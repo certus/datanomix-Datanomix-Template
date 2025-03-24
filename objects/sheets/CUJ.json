@@ -54,7 +54,7 @@
               "qDef": {
                 "qTags": [],
                 "qGrouping": "N",
-                "qDef": "Sum({<SalesDate.autoCalendar.Year={$(=max(Year([SalesDate])))}>} SalesAmount) \r\n",
+                "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
                 "qNumFormat": {
                   "qType": "U",
                   "qnDec": 10,
@@ -97,14 +97,28 @@
               },
               "qAttributeExpressions": [
                 {
-                  "qExpression": "Count(City)",
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)",
                   "qAttribute": true,
                   "qNumFormat": {
                     "qType": "U",
                     "qnDec": 10,
                     "qUseThou": 0
                   },
+                  "qLabelExpression": "='YTD Sales (' & Date(MakeDate(Max(Year([SalesDate])), 1, 1)) & ' - ' & '$(=Max(SalesDate)))'",
                   "cId": "SypAYDb",
+                  "autoSort": true,
+                  "id": "customTooltipExpression"
+                },
+                {
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\r\n",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "qLabelExpression": "='LYTD Sales ($(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) - $(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate))))))'\r\n\n",
+                  "cId": "NVvza",
                   "autoSort": true,
                   "id": "customTooltipExpression"
                 }
@@ -139,7 +153,7 @@
               "qDef": {
                 "qTags": [],
                 "qGrouping": "N",
-                "qDef": "Sum({<SalesDate.autoCalendar.Year={$(=max(Year([SalesDate])))}>} SalesAmount)\r\n/\nSum({<SalesDate.autoCalendar.Year={$(=max(Year([SalesDate]))-1)}>} SalesAmount)\n- 1",
+                "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n/\nSum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\n- 1",
                 "qNumFormat": {
                   "qType": "F",
                   "qnDec": 2,
