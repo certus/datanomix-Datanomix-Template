@@ -195,7 +195,7 @@
                   "qType": "F",
                   "qnDec": 2,
                   "qUseThou": 0,
-                  "qFmt": "0,0%",
+                  "qFmt": "+# ##0,0%;-# ##0,0%",
                   "qDec": ",",
                   "qThou": " "
                 },
@@ -204,7 +204,7 @@
                 "qExpressions": [],
                 "qLabelExpression": "='vs LYTD'\r\n/* INSTRUCTION:\n - Show title for the second KPI: specify comparison period.\n - Use % number formatting with 1 digit after comma.\n - Use +/- indicators before the value to show growth or decline.\n*/",
                 "autoSort": true,
-                "numFormatFromTemplate": true,
+                "numFormatFromTemplate": false,
                 "measureAxis": {
                   "min": -0.40560450262470527,
                   "max": 0.30420337696852895
