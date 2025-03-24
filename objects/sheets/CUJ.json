@@ -29,6 +29,20 @@
           "width": 20.833333333333336,
           "height": 16.666666666666664
         }
+      },
+      {
+        "name": "tBVAR",
+        "type": "kpi",
+        "col": 5,
+        "row": 0,
+        "colspan": 5,
+        "rowspan": 2,
+        "bounds": {
+          "y": 0,
+          "x": 20.833333333333336,
+          "width": 20.833333333333336,
+          "height": 16.666666666666664
+        }
       }
     ],
     "qChildListDef": {
@@ -358,6 +372,382 @@
           "chart": {
             "style": {
               "size": "medium"
+            }
+          },
+          "auto": false,
+          "title": {
+            "qStringExpression": {
+              "qExpr": "='Year-to-Date Sales Performance'\r\n/* INSTRUCTION:\n - KPI full name (e.g., \"Year-to-Date Sales Performance\")\n*/"
+            }
+          },
+          "description": {
+            "qStringExpression": {
+              "qExpr": "='Sales from Jan 1 to current date vs previous year'\r\n/* INSTRUCTION:\n - Brief context and timeframe (e.g., \"Sales from Jan 1 to current date vs previous year\")\n*/"
+            }
+          }
+        },
+        "visualization": "kpi",
+        "version": "1.2.1",
+        "showMeasureTitle": true,
+        "showSecondMeasureTitle": true,
+        "textAlign": "center",
+        "layoutBehavior": "relative",
+        "fontSize": "M",
+        "components": [
+          {
+            "key": "general"
+          },
+          {
+            "key": "textAlignment"
+          },
+          {
+            "key": "textBehavior"
+          },
+          {
+            "key": "useAdvancedMode"
+          },
+          {
+            "key": "simpleSettings",
+            "showSecondTitle": true,
+            "showFirstTitle": false
+          },
+          {
+            "key": "firstMeasureTitle"
+          },
+          {
+            "key": "firstMeasureValue"
+          },
+          {
+            "key": "secondMeasureTitle"
+          },
+          {
+            "key": "secondMeasureValue"
+          }
+        ]
+      },
+      "qChildren": []
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "tBVAR",
+          "qType": "kpi"
+        },
+        "qMetaDef": {},
+        "qHyperCubeDef": {
+          "qDimensions": [],
+          "qMeasures": [
+            {
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
+                "qNumFormat": {
+                  "qType": "U",
+                  "qnDec": 10,
+                  "qUseThou": 0
+                },
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "qLabelExpression": "='Sales'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
+                "autoSort": true,
+                "cId": "Ymja",
+                "numFormatFromTemplate": true,
+                "measureAxis": {
+                  "min": 1459706.5650000032,
+                  "max": 4379119.69500001
+                },
+                "conditionalColoring": {
+                  "useConditionalColoring": true,
+                  "singleColor": 3,
+                  "paletteSingleColor": {
+                    "index": -1,
+                    "color": "#006580"
+                  },
+                  "segments": {
+                    "limits": [],
+                    "paletteColors": [
+                      {
+                        "index": -1,
+                        "color": "#006580"
+                      }
+                    ]
+                  },
+                  "useBaseColors": true
+                }
+              },
+              "qSortBy": {
+                "qSortByNumeric": -1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [
+                {
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "qLabelExpression": "='YTD Sales (' & Date(MakeDate(Max(Year([SalesDate])), 1, 1)) & ' - ' & '$(=Max(SalesDate)))'",
+                  "cId": "SypAYDb",
+                  "autoSort": true,
+                  "id": "customTooltipExpression"
+                },
+                {
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\r\n",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "qLabelExpression": "='LYTD Sales ($(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) - $(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate))))))'\r\n\n",
+                  "cId": "NVvza",
+                  "autoSort": true,
+                  "id": "customTooltipExpression"
+                },
+                {
+                  "qExpression": "='Year-to-Date Sales Performance'\r\n/* INSTRUCTION:\n - KPI full name (e.g., \"Year-to-Date Sales Performance\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "cId": "wACPG",
+                  "autoSort": true,
+                  "id": "customTooltipTitle"
+                },
+                {
+                  "qExpression": "='Sales from Jan 1 to current date vs previous year'\r\n/* INSTRUCTION:\n - Brief context and timeframe (e.g., \"Sales from Jan 1 to current date vs previous year\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "cId": "jzPSA",
+                  "autoSort": true,
+                  "id": "customTooltipDescription"
+                },
+                {
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n-\nSum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\n/* INSTRUCTION:\n - If secondary KPI show % growth/decline, make sure to show Absolute difference in the tooltip (Expression: Sum(CurrentSales)-Sum(PreviousYearSales), Label: \"Absolute Δ\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "qLabelExpression": "='Absolute Δ'",
+                  "cId": "XRTpgy",
+                  "autoSort": true,
+                  "id": "customTooltipExpression"
+                }
+              ],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              }
+            },
+            {
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n/\nSum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\n- 1",
+                "qNumFormat": {
+                  "qType": "F",
+                  "qnDec": 2,
+                  "qUseThou": 0,
+                  "qFmt": "+# ##0,0%;-# ##0,0%",
+                  "qDec": ",",
+                  "qThou": " "
+                },
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "qLabelExpression": "='vs LYTD'\r\n/* INSTRUCTION:\n - Show title for the second KPI: specify comparison period.\n - Use % number formatting with 1 digit after comma.\n - Use +/- indicators before the value to show growth or decline.\n*/",
+                "autoSort": true,
+                "numFormatFromTemplate": false,
+                "measureAxis": {
+                  "min": -0.40560450262470527,
+                  "max": 0.30420337696852895
+                },
+                "conditionalColoring": {
+                  "useConditionalColoring": true,
+                  "singleColor": 3,
+                  "paletteSingleColor": {
+                    "index": 6
+                  },
+                  "segments": {
+                    "limits": [
+                      {
+                        "value": {
+                          "qValueExpression": {
+                            "qExpr": "=0\r\n/* INSTRUCTION:\n - For conditional colors use limit 0 for the second KPI to indicate growth/decline.\n - For conditional colors for the second KPI use green color to show growth, red color to show decline (use color-blind safe colors).\n - For conditional colors for the second KPI use up and down arrow symbols to show growth/decline.\n*/"
+                          }
+                        },
+                        "gradient": false
+                      }
+                    ],
+                    "paletteColors": [
+                      {
+                        "color": "#ac4d58",
+                        "icon": "ArrowDownward",
+                        "index": 10,
+                        "iconContent": "[{\"type\":\"path\",\"props\":{\"d\":\"M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z\"}}]"
+                      },
+                      {
+                        "color": "#83af9b",
+                        "icon": "ArrowUpward",
+                        "index": 3,
+                        "iconContent": "[{\"type\":\"path\",\"props\":{\"d\":\"M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z\"}}]"
+                      }
+                    ]
+                  },
+                  "useBaseColors": false
+                },
+                "cId": "CAfqJH",
+                "isCustomFormatted": false
+              },
+              "qSortBy": {
+                "qSortByNumeric": -1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              }
+            }
+          ],
+          "qInterColumnSortOrder": [
+            0,
+            1
+          ],
+          "qSuppressMissing": true,
+          "qInitialDataFetch": [
+            {
+              "qLeft": 0,
+              "qTop": 0,
+              "qWidth": 500,
+              "qHeight": 10
+            }
+          ],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": [],
+          "qSuppressMeasureTotals": true,
+          "qLayoutExclude": {
+            "qHyperCubeDef": {
+              "qDimensions": [],
+              "qMeasures": [],
+              "qInterColumnSortOrder": [],
+              "qInitialDataFetch": [],
+              "qReductionMode": "N",
+              "qMode": "S",
+              "qPseudoDimPos": -1,
+              "qNoOfLeftDims": -1,
+              "qMaxStackedCells": 5000,
+              "qCalcCond": {},
+              "qTitle": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qColumnOrder": [],
+              "qExpansionState": [],
+              "qDynamicScript": []
+            }
+          }
+        },
+        "script": "",
+        "showTitles": true,
+        "title": {
+          "qStringExpression": {
+            "qExpr": "='Total Sales, USD'\r\n/* INSTRUCTION: \n  - Clear and short title (e.g., \"Total Sales\")\n  - Units of measure (e.g., \"USD\")\n  - Use Auto number formatting\n*/\n"
+          }
+        },
+        "subtitle": {
+          "qStringExpression": {
+            "qExpr": "=max(Year(SalesDate)) & ' YTD vs ' & (max(Year(SalesDate))-1) & ' YTD'\r\n/* INSTRUCTION: \n  - Clear timeframes of first and second KPI (e.g. \"2024 YTD vs 2023 YTD\").\n  - Dynamic text, calculated using formulas.\n*/\n"
+          }
+        },
+        "footnote": {
+          "qStringExpression": {
+            "qExpr": "='Last sales data: ' & max(SalesDate)\r\n/* INSTRUCTION: \n  - Show last data timestamp (e.g. \"Last data: 2024-03-24 09:27\")\n  - Dynamic text, calculated using formulas.\n*/\n"
+          }
+        },
+        "disableNavMenu": true,
+        "showDetails": true,
+        "showDetailsExpression": false,
+        "useLink": false,
+        "sheetLink": "",
+        "openUrlInNewTab": true,
+        "tooltip": {
+          "hideBasic": false,
+          "chart": {
+            "style": {
+              "size": "medium"
+            },
+            "object": {
+              "refId": "e0723c48-7c64-4e3c-b47a-1ddfb098dc70"
             }
           },
           "auto": false,
