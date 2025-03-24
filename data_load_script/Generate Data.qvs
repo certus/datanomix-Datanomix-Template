@@ -1,0 +1,203 @@
+///$tab Generate Data
+// Qlik Sense Load Script for Test Sales Data Generation
+// This script generates thousands of rows of realistic sales data for testing
+
+// Create Product Master
+Products:
+LOAD * INLINE [
+    ProductID, ProductName, Category, SubCategory, UnitPrice, UnitCost
+    P001, Premium Coffee Maker, Kitchen, Appliances, 149.99, 75.50
+    P002, Espresso Machine, Kitchen, Appliances, 399.99, 210.00
+    P003, Coffee Grinder, Kitchen, Appliances, 79.99, 35.25
+    P004, Pour Over Coffee Set, Kitchen, Coffee, 39.99, 18.75
+    P005, French Press, Kitchen, Coffee, 29.99, 12.50
+    P006, Coffee Beans (1kg), Kitchen, Coffee, 24.99, 12.00
+    P007, Coffee Mug Set, Kitchen, Accessories, 19.99, 8.25
+    P008, Travel Tumbler, Kitchen, Accessories, 24.99, 10.50
+    P009, Milk Frother, Kitchen, Accessories, 15.99, 6.25
+    P010, Coffee Storage Container, Kitchen, Accessories, 18.99, 7.75
+    P011, Professional Blender, Kitchen, Appliances, 249.99, 125.00
+    P012, Stand Mixer, Kitchen, Appliances, 299.99, 150.00
+    P013, Food Processor, Kitchen, Appliances, 199.99, 95.00
+    P014, Toaster Oven, Kitchen, Appliances, 129.99, 65.00
+    P015, Microwave, Kitchen, Appliances, 179.99, 90.00
+    P016, Knife Set, Kitchen, Cookware, 99.99, 45.00
+    P017, Cookware Set, Kitchen, Cookware, 199.99, 100.00
+    P018, Cutting Board, Kitchen, Cookware, 29.99, 12.00
+    P019, Dish Set, Kitchen, Dinnerware, 89.99, 40.00
+    P020, Glassware Set, Kitchen, Dinnerware, 49.99, 22.50
+];
+
+// Create Customer Master
+Customers:
+LOAD * INLINE [
+    CustomerID, CustomerName, City, State, Country, CustomerSegment
+    C001, Acme Corporation, New York, NY, USA, Corporate
+    C002, Global Foods, Chicago, IL, USA, Corporate
+    C003, Tech Solutions, San Francisco, CA, USA, Corporate
+    C004, Coffee World, Seattle, WA, USA, Small Business
+    C005, Mountain Brew, Denver, CO, USA, Small Business
+    C006, Bean There, Portland, OR, USA, Small Business
+    C007, Urban Grind, Boston, MA, USA, Small Business
+    C008, Coast Cafe, Miami, FL, USA, Small Business
+    C009, John Smith, Dallas, TX, USA, Consumer
+    C010, Emily Johnson, Los Angeles, CA, USA, Consumer
+    C011, Michael Williams, Atlanta, GA, USA, Consumer
+    C012, Sarah Brown, Philadelphia, PA, USA, Consumer
+    C013, David Miller, Phoenix, AZ, USA, Consumer
+    C014, Laura Wilson, Houston, TX, USA, Consumer
+    C015, Robert Moore, Detroit, MI, USA, Consumer
+    C016, Jennifer Taylor, San Diego, CA, USA, Consumer
+    C017, Sunrise Hotels, Las Vegas, NV, USA, Corporate
+    C018, Central Hospital, Minneapolis, MN, USA, Corporate
+    C019, University Dining, Austin, TX, USA, Corporate
+    C020, Office Supplies Pro, Indianapolis, IN, USA, Small Business
+];
+
+// Create Sales Reps Master
+SalesReps:
+LOAD * INLINE [
+    SalesRepID, SalesRepName, Region, HireDate
+    SR001, James Anderson, East, 01/15/2015
+    SR002, Lisa Rodriguez, West, 03/22/2016
+    SR003, Robert Chen, Central, 06/10/2017
+    SR004, Maria Garcia, South, 11/05/2018
+    SR005, Thomas Wright, Northeast, 02/15/2019
+    SR006, Sarah Johnson, Northwest, 07/12/2020
+    SR007, Michael Lee, Southwest, 10/01/2021
+    SR008, Jennifer Patel, Southeast, 01/15/2022
+];
+
+// Generate Sales Transactions (thousands of rows)
+Sales:
+LOAD
+    'S' & 
+    Right('00000' & IterNo(), 5) as SalesID,
+    Date(MakeDate(2022, 1, 1) + Floor(Rand() * (Num(MakeDate(2024, 12, 31)) - Num(MakeDate(2022, 1, 1)) + 1))) as SalesDate,
+    'C' & Right('000' & Ceil(Rand() * 20), 3) as CustomerID,
+    'P' & Right('000' & Ceil(Rand() * 20), 3) as ProductID,
+    'SR00' & Ceil(Rand() * 8) as SalesRepID,
+    Ceil(Rand() * 10) as Quantity,
+    Pick(Ceil(Rand() * 3), 'Online', 'In-Store', 'Phone') as SalesChannel,
+    Pick(Ceil(Rand() * 4), 'Credit Card', 'Cash', 'PayPal', 'Bank Transfer') as PaymentMethod,
+    Pick(Ceil(Rand() * 3), 'Standard', 'Express', 'Pickup') as ShippingMethod
+AUTOGENERATE 10000;
+
+// First create temp table with product prices
+TempProductPrices:
+LOAD
+    ProductID,
+    UnitPrice as ProductPrice,
+    UnitCost as ProductCost
+RESIDENT Products;
+
+// Join Product prices for calculations using INNER JOIN
+INNER JOIN(Sales)
+LOAD
+    ProductID,
+    ProductPrice,
+    ProductCost
+RESIDENT TempProductPrices;
+
+// Now calculate sales metrics with joined data
+SalesWithMetrics:
+LOAD
+    SalesID,
+    SalesDate,
+    CustomerID,
+    ProductID,
+    SalesRepID,
+    Quantity,
+    SalesChannel,
+    PaymentMethod,
+    ShippingMethod,
+    ProductPrice,
+    ProductCost,
+    ProductPrice * Quantity as SalesAmount,
+    ProductCost * Quantity as CostAmount,
+    (ProductPrice * Quantity) - (ProductCost * Quantity) as GrossProfit,
+    ((ProductPrice * Quantity) - (ProductCost * Quantity)) / (ProductPrice * Quantity) as GrossProfitMargin
+RESIDENT Sales;
+
+// Drop the original sales table and rename
+DROP TABLE Sales;
+RENAME TABLE SalesWithMetrics TO Sales;
+DROP TABLE TempProductPrices;
+
+// Create some sales growth patterns by date
+// Apply seasonal patterns, yearly growth, and random variations
+SalesWithPatterns:
+LOAD
+    SalesID,
+    SalesDate,
+    CustomerID,
+    ProductID,
+    SalesRepID,
+    Quantity,
+    SalesChannel,
+    PaymentMethod,
+    ShippingMethod,
+    ProductPrice,
+    ProductCost,
+    // Apply seasonal pattern (higher in Q4, lower in Q1, plus yearly growth)
+    SalesAmount * 
+        // Base seasonal pattern
+        (1 + 0.3 * (Month(SalesDate) > 9)) * // Q4 boost
+        (1 - 0.1 * (Month(SalesDate) < 4)) * // Q1 reduction
+        // Yearly growth pattern
+        (1 + 0.2 * (Year(SalesDate) - 2022)) *
+        // Random variation
+        (0.85 + Rand() * 0.3) as AdjustedSalesAmount,
+    CostAmount * 
+        // Cost grows more slowly than sales
+        (1 + 0.15 * (Year(SalesDate) - 2022)) *
+        // Random variation in costs
+        (0.9 + Rand() * 0.2) as AdjustedCostAmount
+RESIDENT Sales;
+
+// Drop the original sales table and rename
+DROP TABLE Sales;
+RENAME TABLE SalesWithPatterns TO Sales;
+
+// Final sales table with recalculated profit
+FinalSales:
+LOAD
+    SalesID,
+    SalesDate,
+    CustomerID,
+    ProductID,
+    SalesRepID,
+    Quantity,
+    SalesChannel,
+    PaymentMethod,
+    ShippingMethod,
+    ProductPrice,
+    ProductCost,
+    Round(AdjustedSalesAmount, 0.01) as SalesAmount,
+    Round(AdjustedCostAmount, 0.01) as CostAmount,
+    Round(AdjustedSalesAmount - AdjustedCostAmount, 0.01) as GrossProfit,
+    Round((AdjustedSalesAmount - AdjustedCostAmount) / AdjustedSalesAmount, 0.0001) as GrossProfitMargin
+RESIDENT Sales;
+
+// Drop the original sales table and rename
+DROP TABLE Sales;
+RENAME TABLE FinalSales TO Sales;
+
+// Add some targets data
+Targets:
+LOAD
+    'SR00' & Ceil(Rand() * 8) as SalesRepID,
+    Date(MakeDate(2022 + Floor((IterNo() - 1) / 12), 1 + Mod((IterNo() - 1), 12), 1)) as TargetMonth,
+    // Generate targets that grow over time (by year) with some random variation
+    50000 * (1 + 0.2 * Floor(((IterNo() - 1) / 12))) * (0.85 + Rand() * 0.3) as SalesTarget
+AUTOGENERATE 8 * 12 * 3; // 8 sales reps, 12 months, 3 years
+
+
+
+
+// Store and finish
+// STORE Sales INTO [lib://Sales/sales_data.qvd] (qvd);
+// STORE Products INTO [lib://Sales/products.qvd] (qvd);
+// STORE Customers INTO [lib://Sales/customers.qvd] (qvd);
+// STORE SalesReps INTO [lib://Sales/sales_reps.qvd] (qvd);
+// STORE Targets INTO [lib://Sales/targets.qvd] (qvd);

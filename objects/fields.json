@@ -1,0 +1,305 @@
+[
+  {
+    "qName": "Category",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Products"
+    ]
+  },
+  {
+    "qName": "City",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers"
+    ]
+  },
+  {
+    "qName": "CostAmount",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "Country",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers"
+    ]
+  },
+  {
+    "qName": "CustomerID",
+    "qTags": [
+      "$key",
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers",
+      "Sales"
+    ]
+  },
+  {
+    "qName": "CustomerName",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers"
+    ]
+  },
+  {
+    "qName": "CustomerSegment",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers"
+    ]
+  },
+  {
+    "qName": "GrossProfit",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "GrossProfitMargin",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "HireDate",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "SalesReps"
+    ]
+  },
+  {
+    "qName": "PaymentMethod",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "ProductCost",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "ProductID",
+    "qTags": [
+      "$key",
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Products",
+      "Sales"
+    ]
+  },
+  {
+    "qName": "ProductName",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Products"
+    ]
+  },
+  {
+    "qName": "ProductPrice",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "Quantity",
+    "qTags": [
+      "$numeric",
+      "$integer"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "Region",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "SalesReps"
+    ]
+  },
+  {
+    "qName": "SalesAmount",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "SalesChannel",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "SalesDate",
+    "qTags": [
+      "$numeric",
+      "$integer",
+      "$timestamp",
+      "$date"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "SalesID",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "SalesRepID",
+    "qTags": [
+      "$key",
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "SalesReps",
+      "Sales",
+      "Targets"
+    ]
+  },
+  {
+    "qName": "SalesRepName",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "SalesReps"
+    ]
+  },
+  {
+    "qName": "SalesTarget",
+    "qTags": [
+      "$numeric",
+      "$timestamp"
+    ],
+    "qSrcTables": [
+      "Targets"
+    ]
+  },
+  {
+    "qName": "ShippingMethod",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Sales"
+    ]
+  },
+  {
+    "qName": "State",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Customers"
+    ]
+  },
+  {
+    "qName": "SubCategory",
+    "qTags": [
+      "$ascii",
+      "$text"
+    ],
+    "qSrcTables": [
+      "Products"
+    ]
+  },
+  {
+    "qName": "TargetMonth",
+    "qTags": [
+      "$numeric",
+      "$integer",
+      "$timestamp",
+      "$date"
+    ],
+    "qSrcTables": [
+      "Targets"
+    ]
+  },
+  {
+    "qName": "UnitCost",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Products"
+    ]
+  },
+  {
+    "qName": "UnitPrice",
+    "qTags": [
+      "$numeric"
+    ],
+    "qSrcTables": [
+      "Products"
+    ]
+  }
+]
