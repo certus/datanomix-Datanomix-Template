@@ -1,0 +1,29 @@
+{
+  "qInfo": {
+    "qId": "Jmpyv",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Profit %",
+    "qDef": "avg(GrossProfitMargin-0.5)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "F",
+      "qnDec": 2,
+      "qUseThou": 0,
+      "qFmt": "0%",
+      "qDec": ",",
+      "qThou": " "
+    },
+    "isCustomFormatted": false,
+    "numFormatFromTemplate": true,
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Profit %",
+    "description": "",
+    "tags": []
+  }
+}

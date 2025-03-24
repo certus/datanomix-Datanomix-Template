@@ -113,10 +113,11 @@
               "qCalcCond": {},
               "qAttributeExpressions": [
                 {
-                  "qExpression": "avg(GrossProfitMargin-0.5)",
+                  "qLibraryId": "Jmpyv",
                   "qAttribute": true,
                   "id": "colorByAlternative",
-                  "label": "Profit"
+                  "matchMeasure": 0,
+                  "colorMapRef": "Jmpyv"
                 }
               ],
               "qAttributeDimensions": [],
@@ -128,26 +129,27 @@
           ],
           "qMeasures": [
             {
+              "qLibraryId": "Jmpyv",
               "qDef": {
-                "qLabel": "Profit",
                 "qTags": [],
                 "qGrouping": "N",
-                "qDef": "avg(GrossProfitMargin-0.5)",
-                "qNumFormat": {
-                  "qType": "F",
-                  "qnDec": 2,
-                  "qUseThou": 0,
-                  "qFmt": "0%",
-                  "qDec": ",",
-                  "qThou": " "
-                },
                 "qAccumulate": 0,
                 "qActiveExpression": 0,
                 "qExpressions": [],
                 "autoSort": true,
                 "cId": "pVeRAjN",
                 "numFormatFromTemplate": true,
-                "isCustomFormatted": false
+                "quarantine": {
+                  "qNumFormat": {
+                    "qType": "F",
+                    "qnDec": 2,
+                    "qUseThou": 0,
+                    "qFmt": "0%",
+                    "qDec": ",",
+                    "qThou": " "
+                  },
+                  "isCustomFormatted": false
+                }
               },
               "qSortBy": {
                 "qSortByNumeric": -1,
@@ -286,11 +288,11 @@
           "autoMinMax": true,
           "measureMin": 0,
           "measureMax": 10,
-          "altLabel": "Profit",
+          "altLabel": "Jmpyv",
           "byMeasureDef": {
-            "label": "Profit",
-            "key": "avg(GrossProfitMargin-0.5)",
-            "type": "expression",
+            "label": "Jmpyv",
+            "key": "Jmpyv",
+            "type": "libraryItem",
             "activeMeasureIndex": 0
           }
         },
