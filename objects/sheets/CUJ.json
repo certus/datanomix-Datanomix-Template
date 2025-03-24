@@ -121,6 +121,43 @@
                   "cId": "NVvza",
                   "autoSort": true,
                   "id": "customTooltipExpression"
+                },
+                {
+                  "qExpression": "='Year-to-Date Sales Performance'\r\n/* INSTRUCTION:\n - KPI full name (e.g., \"Year-to-Date Sales Performance\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "cId": "wACPG",
+                  "autoSort": true,
+                  "id": "customTooltipTitle"
+                },
+                {
+                  "qExpression": "='Sales from Jan 1 to current date vs previous year'\r\n/* INSTRUCTION:\n - Brief context and timeframe (e.g., \"Sales from Jan 1 to current date vs previous year\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "cId": "jzPSA",
+                  "autoSort": true,
+                  "id": "customTooltipDescription"
+                },
+                {
+                  "qExpression": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n-\nSum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate]))-1, 1, 1))) <=$(=Date(MakeDate(Max(Year([SalesDate]))-1, Month(Max(SalesDate)), Day(Max(SalesDate)))))\"}>} SalesAmount)\n/* INSTRUCTION:\n - If secondary KPI show % growth/decline, make sure to show Absolute difference in the tooltip (Expression: Sum(CurrentSales)-Sum(PreviousYearSales), Label: \"Absolute Δ\")\n*/",
+                  "qAttribute": true,
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0
+                  },
+                  "qLabelExpression": "='Absolute Δ'",
+                  "cId": "XRTpgy",
+                  "autoSort": true,
+                  "id": "customTooltipExpression"
                 }
               ],
               "qAttributeDimensions": [],
@@ -324,8 +361,16 @@
             }
           },
           "auto": false,
-          "title": "",
-          "description": ""
+          "title": {
+            "qStringExpression": {
+              "qExpr": "='Year-to-Date Sales Performance'\r\n/* INSTRUCTION:\n - KPI full name (e.g., \"Year-to-Date Sales Performance\")\n*/"
+            }
+          },
+          "description": {
+            "qStringExpression": {
+              "qExpr": "='Sales from Jan 1 to current date vs previous year'\r\n/* INSTRUCTION:\n - Brief context and timeframe (e.g., \"Sales from Jan 1 to current date vs previous year\")\n*/"
+            }
+          }
         },
         "visualization": "kpi",
         "version": "1.2.1",
