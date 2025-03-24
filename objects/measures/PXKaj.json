@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "PXKaj",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Total Sales",
+    "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Sales'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "numFormatFromTemplate": true,
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Total Sales",
+    "description": "",
+    "tags": []
+  }
+}

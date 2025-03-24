@@ -65,19 +65,13 @@
           "qDimensions": [],
           "qMeasures": [
             {
+              "qLibraryId": "PXKaj",
               "qDef": {
                 "qTags": [],
                 "qGrouping": "N",
-                "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
-                "qNumFormat": {
-                  "qType": "U",
-                  "qnDec": 10,
-                  "qUseThou": 0
-                },
                 "qAccumulate": 0,
                 "qActiveExpression": 0,
                 "qExpressions": [],
-                "qLabelExpression": "='Sales'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
                 "autoSort": true,
                 "cId": "Ymja",
                 "numFormatFromTemplate": true,
@@ -102,6 +96,17 @@
                     ]
                   },
                   "useBaseColors": true
+                },
+                "quarantine": {
+                  "qNumFormat": {
+                    "qType": "U",
+                    "qnDec": 10,
+                    "qUseThou": 0,
+                    "qFmt": "",
+                    "qDec": "",
+                    "qThou": ""
+                  },
+                  "isCustomFormatted": false
                 }
               },
               "qSortBy": {
