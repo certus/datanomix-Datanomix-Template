@@ -10,6 +10,7 @@ Sheet Title | Description
 ------------ | -------------
 KPI|
 Bar Chart|
+Line Chart|
 
 
 
