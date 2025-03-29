@@ -1,11 +1,11 @@
 {
   "qProperty": {
     "qInfo": {
-      "qId": "bd16629d-4539-4dc4-a794-ea24e3488f07",
+      "qId": "5ab11669-fb6c-4862-a637-84cd6a93bf4c",
       "qType": "masterobject"
     },
     "qMetaDef": {
-      "title": "Diverging bar",
+      "title": "Ordered bar with alternative dimensions and measures",
       "description": "",
       "tags": []
     },
@@ -31,10 +31,9 @@
             "qNumberPresentations": [],
             "qActiveField": 0,
             "autoSort": true,
-            "cId": "AkcftK",
+            "cId": "SVwabVn",
             "othersLabel": "Others"
           },
-          "qNullSuppression": true,
           "qOtherTotalSpec": {
             "qOtherMode": "OTHER_OFF",
             "qOtherCounted": {
@@ -55,15 +54,7 @@
           },
           "qTotalLabel": {},
           "qCalcCond": {},
-          "qAttributeExpressions": [
-            {
-              "qLibraryId": "Jmpyv",
-              "qAttribute": true,
-              "id": "colorByAlternative",
-              "matchMeasure": 0,
-              "colorMapRef": "Jmpyv"
-            }
-          ],
+          "qAttributeExpressions": [],
           "qAttributeDimensions": [],
           "qCalcCondition": {
             "qCond": {},
@@ -73,7 +64,7 @@
       ],
       "qMeasures": [
         {
-          "qLibraryId": "Jmpyv",
+          "qLibraryId": "PXKaj",
           "qDef": {
             "qTags": [],
             "qGrouping": "N",
@@ -81,17 +72,10 @@
             "qActiveExpression": 0,
             "qExpressions": [],
             "autoSort": true,
-            "cId": "pVeRAjN",
+            "cId": "LQdKXRx",
             "numFormatFromTemplate": true,
             "quarantine": {
-              "qNumFormat": {
-                "qType": "F",
-                "qnDec": 2,
-                "qUseThou": 0,
-                "qFmt": "0%",
-                "qDec": ",",
-                "qThou": " "
-              },
+              "qNumFormat": {},
               "isCustomFormatted": false
             }
           },
@@ -100,7 +84,13 @@
             "qSortByLoadOrder": 1,
             "qExpression": {}
           },
-          "qAttributeExpressions": [],
+          "qAttributeExpressions": [
+            {
+              "qExpression": "if(CategoryName='Womens wear','#ff1654','#008DB0')",
+              "qAttribute": true,
+              "id": "colorByExpression"
+            }
+          ],
           "qAttributeDimensions": [],
           "qCalcCond": {},
           "qCalcCondition": {
@@ -157,8 +147,108 @@
       "qDynamicScript": [],
       "qLayoutExclude": {
         "qHyperCubeDef": {
-          "qDimensions": [],
-          "qMeasures": [],
+          "qDimensions": [
+            {
+              "qDef": {
+                "qGrouping": "N",
+                "qFieldDefs": [
+                  "Category"
+                ],
+                "qFieldLabels": [
+                  ""
+                ],
+                "qSortCriterias": [
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  }
+                ],
+                "qNumberPresentations": [],
+                "qActiveField": 0,
+                "autoSort": true,
+                "cId": "pbrTR",
+                "othersLabel": "Others"
+              },
+              "qOtherTotalSpec": {
+                "qOtherMode": "OTHER_OFF",
+                "qOtherCounted": {
+                  "qv": "10"
+                },
+                "qOtherLimit": {
+                  "qv": "0"
+                },
+                "qOtherLimitMode": "OTHER_GE_LIMIT",
+                "qForceBadValueKeeping": true,
+                "qApplyEvenWhenPossiblyWrongResult": true,
+                "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                "qTotalMode": "TOTAL_OFF",
+                "qReferencedExpression": {}
+              },
+              "qOtherLabel": {
+                "qv": "Others"
+              },
+              "qTotalLabel": {},
+              "qCalcCond": {},
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              }
+            }
+          ],
+          "qMeasures": [
+            {
+              "qLibraryId": "5cdae00d-5288-4dac-aa3c-a626a7414850",
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "autoSort": true,
+                "cId": "bQZAzvc",
+                "numFormatFromTemplate": true,
+                "quarantine": {
+                  "qNumFormat": {},
+                  "isCustomFormatted": false
+                }
+              },
+              "qSortBy": {
+                "qSortByNumeric": -1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              }
+            }
+          ],
           "qInterColumnSortOrder": [],
           "qInitialDataFetch": [],
           "qReductionMode": "N",
@@ -184,8 +274,8 @@
       "dimRefLines": []
     },
     "showTitles": true,
-    "title": "Diverging bar",
-    "subtitle": "A simple standard bar chart that can handle both negative and positive magnitude values.",
+    "title": "Ordered bar with alternate dimensions and measures",
+    "subtitle": "Standard bar charts display the ranks of values much more easily when sorted into order",
     "footnote": "",
     "disableNavMenu": false,
     "showDetails": false,
@@ -207,38 +297,29 @@
       "showTotalLabels": true
     },
     "color": {
-      "auto": false,
-      "mode": "byMeasure",
+      "auto": true,
+      "mode": "primary",
       "formatting": {
-        "numFormatFromTemplate": true,
-        "quarantine": {
-          "qNumFormat": {},
-          "isCustomFormatted": false
-        },
-        "qNumFormat": null
+        "numFormatFromTemplate": true
       },
       "useBaseColors": "off",
       "paletteColor": {
-        "index": 6
+        "index": -1,
+        "color": "#008DB0"
       },
       "useDimColVal": true,
       "useMeasureGradient": true,
       "persistent": false,
       "expressionIsColor": true,
       "expressionLabel": "",
-      "measureScheme": "dg",
+      "measureScheme": "sg",
       "reverseScheme": false,
       "dimensionScheme": "12",
       "autoMinMax": true,
       "measureMin": 0,
       "measureMax": 10,
-      "altLabel": "Jmpyv",
-      "byMeasureDef": {
-        "label": "Jmpyv",
-        "key": "Jmpyv",
-        "type": "libraryItem",
-        "activeMeasureIndex": 0
-      }
+      "altLabel": "hJrffcr",
+      "colorExpression": "if(CategoryName='Womens wear','#ff1654','#008DB0')"
     },
     "legend": {
       "show": true,
@@ -247,7 +328,7 @@
     },
     "dimensionAxis": {
       "continuousAuto": true,
-      "show": "labels",
+      "show": "all",
       "label": "auto",
       "dock": "near",
       "axisDisplayMode": "auto",
@@ -264,7 +345,7 @@
       "max": 10
     },
     "tooltip": {
-      "auto": false,
+      "auto": true,
       "hideBasic": false,
       "chart": {
         "style": {
@@ -295,10 +376,12 @@
       }
     },
     "visualization": "barchart",
-    "version": "1.35.13",
+    "version": "1.1.0",
     "components": [],
     "showMiniChartForContinuousAxis": true,
-    "hash": 0.8808869449365779,
+    "qLayoutExclude": {
+      "quarantine": {}
+    },
     "masterVersion": 0.96
   },
   "qChildren": []

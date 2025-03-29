@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "5cdae00d-5288-4dac-aa3c-a626a7414850",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Gross Profit",
+    "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} GrossProfit)\r\n",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Sales'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "numFormatFromTemplate": true,
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Gross Profit",
+    "description": "",
+    "tags": []
+  }
+}
