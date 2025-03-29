@@ -29,6 +29,20 @@
           "width": 50,
           "height": 50
         }
+      },
+      {
+        "name": "fDKrq",
+        "type": "linechart",
+        "col": 12,
+        "row": 0,
+        "colspan": 12,
+        "rowspan": 6,
+        "bounds": {
+          "y": 0,
+          "x": 50,
+          "width": 50,
+          "height": 50
+        }
       }
     ],
     "customRowBase": 12,
@@ -51,6 +65,17 @@
           "qType": "linechart"
         },
         "qExtendsId": "38ec576f-ab0c-4074-b710-c2770cc3a7b7",
+        "qMetaDef": {}
+      },
+      "qChildren": []
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "fDKrq",
+          "qType": "linechart"
+        },
+        "qExtendsId": "c624e42b-9730-4cdb-854f-e1d5d60d5337",
         "qMetaDef": {}
       },
       "qChildren": []
