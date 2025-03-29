@@ -27,6 +27,57 @@ Features:
 - Includes mini area chart in tooltip showing weekly data
 - Exponential trend line in tooltip chart
 
+### KPI Implementation Rules
+
+#### Title Area
+- **Title**:
+  - Keep clear and concise (e.g., "Total Sales")
+  - Include units of measure (e.g., "USD")
+  - Avoid unnecessary text that clutters the display
+
+- **Subtitle**:
+  - Specify timeframes for both KPIs (e.g., "2024 YTD vs 2023 YTD")
+  - Use dynamic expressions: `='$(=Max(Year)) YTD vs $(=Max(Year)-1) YTD'`
+  - Ensure subtitle complements the title without redundancy
+
+- **Footnote**:
+  - Display data currency with timestamp: `='Last data: $(=Date(Max(TransactionDate)))'`
+  - Use consistent date formatting across all KPI objects
+
+#### Primary KPI (First Measure)
+- Label for the first KPI = object title.
+- Use appropriate number formatting based on measure type
+- Use auto formatting
+
+#### Secondary KPI (Second Measure)
+- Include title that specifies comparison (e.g., "vs LYTD")
+- Format as percentage with one decimal place and Place +/- prefix before the value: (`+#,##0.0%;-#,##0.0%` for MoneyDecimalSep='.', and `+# ##0,0%;-# ##0,0%` for MoneyDecimalSep=',')
+- Configure conditional colors:
+  - Set limit expression to 0 (zero)
+  - Growth (>0): Use colorblind-safe green (#38A169)
+  - Decline (<0): Use colorblind-safe red (#E53E3E)
+- Configure symbols:
+  - Growth (>0): Use upward arrow (▲)
+  - Decline (<0): Use downward arrow (▼)
+
+#### Link Trend Chart Master Visualization to KPI Tooltip
+- Add "chart" property to the "tooltip" section of the KPI's json, using the following JSON template.
+- object.refId = {GUID} of the added Master Visualization Trend Chart.
+- refId should always be a GUID.
+- Read and follow instructions in comments /* INSTRUCTION: */ in the JSON template.
+```json
+"tooltip": {
+          "chart": {
+            "style": {
+              "size": "medium"
+            },
+            "object": {
+              "refId": "e0723c48-7c64-4e3c-b47a-1ddfb098dc70"
+            }
+          }
+}
+```
+
 ## Bar Charts
 
 ### Diverging bar
