@@ -1,12 +1,12 @@
 {
   "qProperty": {
     "qInfo": {
-      "qId": "38ec576f-ab0c-4074-b710-c2770cc3a7b7",
+      "qId": "5ab11669-fb6c-4862-a637-84cd6a93bf4c",
       "qType": "masterobject"
     },
     "qMetaDef": {
-      "title": "One Measure Over Time",
-      "description": "Display only one measure over time. Use Date, Year-Wee, Year-Month, Year-Quarter as a dimension.",
+      "title": "Ordered bar with alternative dimensions and measures",
+      "description": "",
       "tags": []
     },
     "qHyperCubeDef": {
@@ -15,10 +15,10 @@
           "qDef": {
             "qGrouping": "N",
             "qFieldDefs": [
-              "=[SalesDate.autoCalendar.YearMonth]"
+              "ProductName"
             ],
             "qFieldLabels": [
-              "OrderDate.YearMonth"
+              ""
             ],
             "qSortCriterias": [
               {
@@ -31,7 +31,7 @@
             "qNumberPresentations": [],
             "qActiveField": 0,
             "autoSort": true,
-            "cId": "pWgbXBu",
+            "cId": "SVwabVn",
             "othersLabel": "Others"
           },
           "qOtherTotalSpec": {
@@ -72,9 +72,8 @@
             "qActiveExpression": 0,
             "qExpressions": [],
             "autoSort": true,
-            "cId": "rTAt",
+            "cId": "LQdKXRx",
             "numFormatFromTemplate": true,
-            "styling": [],
             "quarantine": {
               "qNumFormat": {},
               "isCustomFormatted": false
@@ -85,7 +84,13 @@
             "qSortByLoadOrder": 1,
             "qExpression": {}
           },
-          "qAttributeExpressions": [],
+          "qAttributeExpressions": [
+            {
+              "qExpression": "if(CategoryName='Womens wear','#ff1654','#008DB0')",
+              "qAttribute": true,
+              "id": "colorByExpression"
+            }
+          ],
           "qAttributeDimensions": [],
           "qCalcCond": {},
           "qCalcCondition": {
@@ -114,8 +119,8 @@
         }
       ],
       "qInterColumnSortOrder": [
-        0,
-        1
+        1,
+        0
       ],
       "qSuppressMissing": true,
       "qInitialDataFetch": [
@@ -130,7 +135,6 @@
       "qMode": "S",
       "qPseudoDimPos": -1,
       "qNoOfLeftDims": -1,
-      "qAlwaysFullyExpanded": true,
       "qMaxStackedCells": 5000,
       "qCalcCond": {},
       "qTitle": {},
@@ -143,8 +147,108 @@
       "qDynamicScript": [],
       "qLayoutExclude": {
         "qHyperCubeDef": {
-          "qDimensions": [],
-          "qMeasures": [],
+          "qDimensions": [
+            {
+              "qDef": {
+                "qGrouping": "N",
+                "qFieldDefs": [
+                  "Category"
+                ],
+                "qFieldLabels": [
+                  ""
+                ],
+                "qSortCriterias": [
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  }
+                ],
+                "qNumberPresentations": [],
+                "qActiveField": 0,
+                "autoSort": true,
+                "cId": "pbrTR",
+                "othersLabel": "Others"
+              },
+              "qOtherTotalSpec": {
+                "qOtherMode": "OTHER_OFF",
+                "qOtherCounted": {
+                  "qv": "10"
+                },
+                "qOtherLimit": {
+                  "qv": "0"
+                },
+                "qOtherLimitMode": "OTHER_GE_LIMIT",
+                "qForceBadValueKeeping": true,
+                "qApplyEvenWhenPossiblyWrongResult": true,
+                "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                "qTotalMode": "TOTAL_OFF",
+                "qReferencedExpression": {}
+              },
+              "qOtherLabel": {
+                "qv": "Others"
+              },
+              "qTotalLabel": {},
+              "qCalcCond": {},
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              }
+            }
+          ],
+          "qMeasures": [
+            {
+              "qLibraryId": "5cdae00d-5288-4dac-aa3c-a626a7414850",
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "autoSort": true,
+                "cId": "bQZAzvc",
+                "numFormatFromTemplate": true,
+                "quarantine": {
+                  "qNumFormat": {},
+                  "isCustomFormatted": false
+                }
+              },
+              "qSortBy": {
+                "qSortByNumeric": -1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              }
+            }
+          ],
           "qInterColumnSortOrder": [],
           "qInitialDataFetch": [],
           "qReductionMode": "N",
@@ -170,32 +274,30 @@
       "dimRefLines": []
     },
     "showTitles": true,
-    "title": "One Measure Over Time",
-    "subtitle": "The standard way to show a changing time series. If data are irregular, consider markers to represent data points",
+    "title": "Ordered bar with alternate dimensions and measures",
+    "subtitle": "Standard bar charts display the ranks of values much more easily when sorted into order",
     "footnote": "",
     "disableNavMenu": false,
     "showDetails": false,
     "showDetailsExpression": false,
     "showDisclaimer": true,
-    "lineType": "line",
-    "stackedArea": false,
-    "separateStacking": true,
-    "orientation": "horizontal",
-    "scrollbar": "none",
-    "scrollStartPos": 0,
-    "nullMode": "gap",
-    "dataPoint": {
-      "show": true,
-      "showLabels": "auto"
+    "barGrouping": {
+      "grouping": "grouped"
     },
-    "maxNumPoints": 2000,
-    "maxNumLines": 12,
+    "orientation": "horizontal",
+    "scrollbar": "miniChart",
+    "scrollStartPos": 0,
     "gridLine": {
       "auto": true,
       "spacing": 2
     },
+    "dataPoint": {
+      "showLabels": true,
+      "showSegmentLabels": false,
+      "showTotalLabels": true
+    },
     "color": {
-      "auto": false,
+      "auto": true,
       "mode": "primary",
       "formatting": {
         "numFormatFromTemplate": true
@@ -203,7 +305,7 @@
       "useBaseColors": "off",
       "paletteColor": {
         "index": -1,
-        "color": "#269039"
+        "color": "#008DB0"
       },
       "useDimColVal": true,
       "useMeasureGradient": true,
@@ -215,7 +317,9 @@
       "dimensionScheme": "12",
       "autoMinMax": true,
       "measureMin": 0,
-      "measureMax": 10
+      "measureMax": 10,
+      "altLabel": "hJrffcr",
+      "colorExpression": "if(CategoryName='Womens wear','#ff1654','#008DB0')"
     },
     "legend": {
       "show": true,
@@ -224,7 +328,7 @@
     },
     "dimensionAxis": {
       "continuousAuto": true,
-      "show": "labels",
+      "show": "all",
       "label": "auto",
       "dock": "near",
       "axisDisplayMode": "auto",
@@ -238,8 +342,7 @@
       "autoMinMax": true,
       "minMax": "min",
       "min": 0,
-      "max": 10,
-      "logarithmic": false
+      "max": 10
     },
     "tooltip": {
       "auto": true,
@@ -249,23 +352,36 @@
           "size": "medium"
         }
       },
-      "title": "",
-      "description": ""
-    },
-    "visualization": "linechart",
-    "version": "1.0.0",
-    "components": [
-      {
-        "key": "line",
-        "style": {
-          "dataPointSize": 6,
-          "lineThickness": 3,
-          "lineType": "solid",
-          "lineCurve": "linear"
+      "data": {
+        "qHyperCubeDef": {
+          "qDimensions": [],
+          "qMeasures": [],
+          "qInterColumnSortOrder": [],
+          "qInitialDataFetch": [],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": []
         }
       }
-    ],
+    },
+    "visualization": "barchart",
+    "version": "1.1.0",
+    "components": [],
     "showMiniChartForContinuousAxis": true,
+    "qLayoutExclude": {
+      "quarantine": {}
+    },
     "masterVersion": 0.96
   },
   "qChildren": []

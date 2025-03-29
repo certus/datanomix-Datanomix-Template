@@ -1,12 +1,12 @@
 {
   "qProperty": {
     "qInfo": {
-      "qId": "38ec576f-ab0c-4074-b710-c2770cc3a7b7",
+      "qId": "c624e42b-9730-4cdb-854f-e1d5d60d5337",
       "qType": "masterobject"
     },
     "qMetaDef": {
-      "title": "One Measure Over Time",
-      "description": "Display only one measure over time. Use Date, Year-Wee, Year-Month, Year-Quarter as a dimension.",
+      "title": "Actual vs Previous Period Measure Comparison",
+      "description": "Display one time dimension (year, quorter, month, week; but not date, year-month, year-week) and two measures: for current period and for previous period. For example: YTD Sales vs LYTD Sales monthly.",
       "tags": []
     },
     "qHyperCubeDef": {
@@ -15,10 +15,10 @@
           "qDef": {
             "qGrouping": "N",
             "qFieldDefs": [
-              "=[SalesDate.autoCalendar.YearMonth]"
+              "=[SalesDate.autoCalendar.Month]"
             ],
             "qFieldLabels": [
-              "OrderDate.YearMonth"
+              "OrderDate.Month"
             ],
             "qSortCriterias": [
               {
@@ -64,7 +64,59 @@
       ],
       "qMeasures": [
         {
-          "qLibraryId": "PXKaj",
+          "qDef": {
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "qLabelExpression": "='Sales YTD'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
+            "autoSort": true,
+            "cId": "rTAt",
+            "numFormatFromTemplate": true,
+            "styling": []
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          },
+          "$$hashKey": "object:34381"
+        },
+        {
+          "qLibraryId": "qFPJJCm",
           "qDef": {
             "qTags": [],
             "qGrouping": "N",
@@ -72,11 +124,28 @@
             "qActiveExpression": 0,
             "qExpressions": [],
             "autoSort": true,
-            "cId": "rTAt",
             "numFormatFromTemplate": true,
-            "styling": [],
+            "styling": [
+              {
+                "style": {
+                  "dataPointSize": 6,
+                  "lineThickness": 1,
+                  "lineType": "solid",
+                  "lineCurve": "linear"
+                },
+                "cId": "LMfxKH"
+              }
+            ],
+            "cId": "EhWSTbe",
             "quarantine": {
-              "qNumFormat": {},
+              "qNumFormat": {
+                "qType": "U",
+                "qnDec": 10,
+                "qUseThou": 0,
+                "qFmt": "",
+                "qDec": "",
+                "qThou": ""
+              },
               "isCustomFormatted": false
             }
           },
@@ -110,12 +179,14 @@
             },
             "qMaxNumberPoints": -1,
             "qAttributeExpressions": []
-          }
+          },
+          "$$hashKey": "object:34382"
         }
       ],
       "qInterColumnSortOrder": [
         0,
-        1
+        1,
+        2
       ],
       "qSuppressMissing": true,
       "qInitialDataFetch": [
@@ -170,7 +241,7 @@
       "dimRefLines": []
     },
     "showTitles": true,
-    "title": "One Measure Over Time",
+    "title": "Current Period vs Previous Period Comparison",
     "subtitle": "The standard way to show a changing time series. If data are irregular, consider markers to represent data points",
     "footnote": "",
     "disableNavMenu": false,
@@ -195,8 +266,8 @@
       "spacing": 2
     },
     "color": {
-      "auto": false,
-      "mode": "primary",
+      "auto": true,
+      "mode": "byMeasure",
       "formatting": {
         "numFormatFromTemplate": true
       },
@@ -215,7 +286,18 @@
       "dimensionScheme": "12",
       "autoMinMax": true,
       "measureMin": 0,
-      "measureMax": 10
+      "measureMax": 10,
+      "altLabel": {
+        "qStringExpression": {
+          "qExpr": "'Sales YTD'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/"
+        }
+      },
+      "byMeasureDef": {
+        "label": "='Sales YTD'\r\n/* INSTRUCTION:\n - Do not show title for the first KPI, because we show title and subtitle of KPI object.\n*/",
+        "key": "Sum({<SalesDate={\">=$(=Date(MakeDate(Max(Year([SalesDate])), 1, 1))) <=$(=Max(SalesDate))\"}>} SalesAmount)\r\n",
+        "type": "expression",
+        "activeMeasureIndex": 0
+      }
     },
     "legend": {
       "show": true,

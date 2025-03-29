@@ -1,0 +1,36 @@
+{
+  "qInfo": {
+    "qId": "qFPJJCm",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "='Sales LYTD'",
+    "qDef": "Sum({\r\n  <SalesDate={\n    \">=$(=Date(MakeDate(Max(Year(SalesDate)) - 1, 1, 1)))<=$(=Date(AddYears(Max(SalesDate), -1)))\"\n  }>\n} SalesAmount)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Sales LYTD'\r\n",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "numFormatFromTemplate": true,
+    "coloring": {
+      "baseColor": {
+        "color": "#7b7a78",
+        "index": 14
+      }
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "''/* INSTRUCTION:\r\n - Color of Last Year's measures should always be gray, as they are used for context in comparison with actual value.\n*/"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "='Sales LYTD'",
+    "description": "",
+    "tags": []
+  }
+}

@@ -241,7 +241,7 @@
       }
     },
     "legend": {
-      "show": false,
+      "show": true,
       "dock": "auto",
       "showTitle": true
     },
