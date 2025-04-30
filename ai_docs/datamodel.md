@@ -1,87 +1,92 @@
-# Data Model Documentation for Qlik Sense Script
+# Data Model Documentation
 
-## Overview
-This document provides an overview of the data model that will be generated after executing the provided Qlik Sense load script. It includes information on tables, fields, keys, and relationships, as well as derived date fields using the `autoCalendar` feature.
+This document describes the data model created by the Qlik Sense load script. It consists of the main entities: Products, Customers, Sales Reps, Sales, and Targets, along with relationships and derived fields.
 
----
-
-## Tables and Relationships
+## Tables
 
 ### 1. Products
-- **Fields**:
-  - `ProductID`: Key field to link with the `Sales` table
-  - `ProductName`: Name of the product
-  - `Category`: Product main category
-  - `SubCategory`: Subcategory within the main category
-  - `UnitPrice`: Price per unit
-  - `UnitCost`: Cost per unit
+
+- **Fields:**
+  - `ProductID`: Unique identifier for each product.
+  - `ProductName`: Name of the product.
+  - `Category`: High-level classification of the product.
+  - `SubCategory`: More specific classification.
+  - `UnitPrice`: Retail price of the product.
+  - `UnitCost`: Cost price of the product.
+
+- **Primary Key:** `ProductID`
 
 ### 2. Customers
-- **Fields**:
-  - `CustomerID`: Key field to link with the `Sales` table
-  - `CustomerName`: Name of the customer
-  - `City`: Customer's city
-  - `State`: Customer's state
-  - `Country`: Customer's country
-  - `CustomerSegment`: Segment to which the customer belongs
 
-### 3. SalesReps
-- **Fields**:
-  - `SalesRepID`: Key field to link with the `Sales` and `Targets` tables
-  - `SalesRepName`: Name of the sales representative
-  - `Region`: Region of responsibility
-  - `HireDate`: Date of employment
+- **Fields:**
+  - `CustomerID`: Unique identifier for each customer.
+  - `CustomerName`: Name of the customer.
+  - `City`: City where the customer is located.
+  - `State`: State where the customer is located.
+  - `Country`: Country where the customer is located.
+  - `CustomerSegment`: Segment category of the customer (e.g., Corporate, Small Business, Consumer).
+
+- **Primary Key:** `CustomerID`
+
+### 3. Sales Reps
+
+- **Fields:**
+  - `SalesRepID`: Unique identifier for each sales representative.
+  - `SalesRepName`: Name of the sales representative.
+  - `Region`: Geographical region managed by the sales representative.
+  - `HireDate`: Date when the sales representative was hired.
+
+- **Primary Key:** `SalesRepID`
 
 ### 4. Sales
-- **Fields**:
-  - `SalesID`: Unique identifier for each sales transaction
-  - `SalesDate`: The date of the sale
-    - **Derived Fields**:
-      - `SalesDate.autoCalendar.Year`
-      - `SalesDate.autoCalendar.Quarter`
-      - `SalesDate.autoCalendar.YearQuarter`
-      - `SalesDate.autoCalendar.Month`
-      - `SalesDate.autoCalendar.YearMonth`
-      - `SalesDate.autoCalendar.Week`
-      - `SalesDate.autoCalendar.Date`
-      - `SalesDate.autoCalendar.InYTD`
-      - `SalesDate.autoCalendar.YearsAgo`
-      - `SalesDate.autoCalendar.InQTD`
-      - `SalesDate.autoCalendar.QuartersAgo`
-      - `SalesDate.autoCalendar.QuarterRelNo`
-      - `SalesDate.autoCalendar.InMTD`
-      - `SalesDate.autoCalendar.MonthsAgo`
-      - `SalesDate.autoCalendar.MonthRelNo`
-      - `SalesDate.autoCalendar.InWTD`
-      - `SalesDate.autoCalendar.WeeksAgo`
-      - `SalesDate.autoCalendar.WeekRelNo`
-  - `CustomerID`: Foreign key linked to the `Customers` table
-  - `ProductID`: Foreign key linked to the `Products` table
-  - `SalesRepID`: Foreign key linked to the `SalesReps` and `Targets` tables
-  - `Quantity`: Quantity of products sold
-  - `SalesChannel`: The channel through which the sale was made
-  - `PaymentMethod`: The form of payment used
-  - `ShippingMethod`: The method of shipping used
-  - `ProductPrice`: Price of the product at the time of the sale
-  - `ProductCost`: Cost of the product
-  - `SalesAmount`: Total sales amount, adjusted for various factors
-  - `CostAmount`: Total cost amount, adjusted for various factors
-  - `GrossProfit`: Profit from the sale
-  - `GrossProfitMargin`: Margin of profit expressed as a percentage
+
+- **Fields:**
+  - `SalesID`: Unique identifier for each sales transaction.
+  - `SalesDate`: Date of the sales transaction.
+  - `CustomerID`: Identifier for the customer associated with the sale.
+  - `ProductID`: Identifier for the product sold.
+  - `SalesRepID`: Identifier for the sales representative handling the transaction.
+  - `Quantity`: Number of products sold in the transaction.
+  - `SalesChannel`: Method of sale (e.g., Online, In-Store, Phone).
+  - `PaymentMethod`: Method of payment used (e.g., Credit Card, Cash).
+  - `ShippingMethod`: Method of shipping chosen for the transaction.
+  - `ProductPrice`: Price per unit of product.
+  - `ProductCost`: Cost per unit of product.
+  - `SalesAmount`: Total sales value (adjusted) of the transaction.
+  - `CostAmount`: Total cost value (adjusted) of the transaction.
+  - `GrossProfit`: Total gross profit from the transaction.
+  - `GrossProfitMargin`: Gross profit margin as a percentage.
+
+- **Keys:** 
+  - `CustomerID` (foreign key, relates to Customers)
+  - `ProductID` (foreign key, relates to Products)
+  - `SalesRepID` (foreign key, relates to Sales Reps)
+
+- **Derived Fields (AutoCalendar for `SalesDate`):**
+  - `SalesDate.autoCalendar.Year`
+  - `SalesDate.autoCalendar.Quarter`
+  - `SalesDate.autoCalendar.YearQuarter`
+  - `SalesDate.autoCalendar.Month`
+  - `SalesDate.autoCalendar.YearMonth`
+  - `SalesDate.autoCalendar.Week`
+  - `SalesDate.autoCalendar.Date`
+  - Additional temporal fields for analytics, such as `SalesDate.autoCalendar.InYTD`, `SalesDate.autoCalendar.MonthsAgo`, etc.
 
 ### 5. Targets
-- **Fields**:
-  - `SalesRepID`: Foreign key linked to the `SalesReps` and `Sales` tables
-  - `TargetMonth`: Monthly target date
-  - `SalesTarget`: Sales target for the given month and sales representative
 
----
+- **Fields:**
+  - `SalesRepID`: Identifier for the sales representative.
+  - `TargetMonth`: Date representing the month the target is applicable to.
+  - `SalesTarget`: Sales target for the representative in the given month.
 
-## Relationships between Tables
-- **Sales and Customers**: Related via `CustomerID`.
-- **Sales and Products**: Related via `ProductID`.
-- **Sales and SalesReps**: Related via `SalesRepID`.
-- **Targets and SalesReps**: Related via `SalesRepID`.
-- **Sales and Targets**: Related via `SalesRepID`.
+- **Keys:**
+  - `SalesRepID` (foreign key, relates to Sales Reps)
 
-These relationships create a comprehensive sales data model that can be used to analyze sales performance across different products, customers, sales representatives, and time periods, taking into account regional, seasonal, and transactional characteristics.
+## Relationships
+
+- **Products and Sales:** Linked through `ProductID`.
+- **Customers and Sales:** Linked through `CustomerID`.
+- **Sales Reps and Sales:** Linked through `SalesRepID`.
+- **Sales Reps and Targets:** Linked through `SalesRepID`.
+
+This data model facilitates analysis of sales performance across different dimensions, such as time (via autoCalendar), products, customers, and sales representatives. It also includes metrics to evaluate sales growth patterns and target achievement.
